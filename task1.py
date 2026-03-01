@@ -1,6 +1,6 @@
 from collections import UserDict
 
-
+# Field
 class Field:
     def __init__(self, value):
         self.value = value
@@ -8,11 +8,11 @@ class Field:
     def __str__(self):
         return str(self.value)
 
-
+# Name
 class Name(Field):
     pass
 
-
+# Phone
 class Phone(Field):
     def __init__(self, value):
         if not Phone.validate(value):
@@ -23,7 +23,7 @@ class Phone(Field):
     def validate(value):
         return value.isdigit() and len(value) == 10
 
-
+# Record
 class Record:
     def __init__(self, name):
         self.name = Name(name)
@@ -55,7 +55,7 @@ class Record:
     def __str__(self):
         return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
 
-
+# AddressBook class
 class AddressBook(UserDict):
     def add_record(self, record):
         self.data[record.name.value] = record
